@@ -1,25 +1,15 @@
-let today = new Date();
-const text = document.getElementById("text");
+let time = 1200
+let text = document.getElementById('text')
+const timer = setInterval(() => {
+    if(time<0) {
+        time = 1200
+    }
+    
+    let min = Math.floor(time/60)
+    let sec = time%60
+    sec = sec<10 ? '0'+sec : sec
+    min = min<10 ? '0'+min : min
 
-let timer = new Date(
-    today.getFullYear(),today.getMonth(),today.getDay(),today.getHours(),today.getMinutes() + 20,today.getSeconds()+1,today.getMilliseconds()
-)
-
-const msDiff = timer - today
-
-const setTimer = setInterval(twentyTimer = () => {
-
-    let now = new Date()
-    let diff = timer - now
-    // if(diff < 0) {
-    //     clearInterval(setTimer)
-    // }
-
-    let min = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    let sec = Math.floor((diff % (1000 * 60)) / 1000);
-    let ms = Math.floor((diff % (1000 * 60)));
-
-  let time = min + " min " + sec + " s";
-  
-  text.innerHTML = time;
-}, 1);
+    text.innerHTML = `${min} : ${sec}`
+    time--
+}, 1000);
